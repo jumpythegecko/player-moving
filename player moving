@@ -1,0 +1,106 @@
+public class Player {
+
+//variables not defined here. create your own. 
+
+  void display() {
+    fill(255);
+    stroke(255);
+    imageMode(CENTER);     //makes the x,y the center of image
+  }
+  void move() {
+    if (keyPressed) {
+      if (l == 1 && r == 1 && u == 1 && d == 1) {
+        if (keyCode == RIGHT) {     //right arrow
+          right = 1;
+        }
+        if (keyCode == DOWN) {     //down arrow
+          down = 1;
+        }
+        if (keyCode == LEFT) {     //left arrow
+          left = 1;
+        }
+        if (keyCode == UP) {     //up arrow
+          up = 1;
+        }
+      }
+    }
+    if (up == 1) {
+      pU = 1;     //choses what file to display
+      pL = 0;
+      pD = 0;
+      pR = 0;
+      playerd = 1;     //direction 1 is up, 2 is left, 3 is down, and 4 is right
+      if (py>0) {
+        py = py - 5;     //moves the player
+        dy = py;
+      }
+    }
+    if (down == 1) {
+      pU = 0;
+      pL = 0;
+      pD = 1;
+      pR = 0;
+      playerd = 3;
+      if (py<600) {
+        py = py + 5;
+        dy = py;
+      }
+    }
+    if (left == 1) {
+      pU = 0;
+      pL = 1;
+      pD = 0;
+      pR = 0;
+      playerd = 2;
+      if (px>0) {
+        px = px - 5;
+        dx = px;
+      }
+    }
+    if (right == 1) {
+      pU = 0;
+      pL = 0;
+      pD = 0;
+      pR = 1;
+      playerd = 4;
+      if (px<800) {
+        px = px + 5;
+        dx = px;
+      }
+    }
+    imageMode(CENTER);
+    if (pU == 1) {
+      PImage hU = loadImage("humanU.png");     //load up facing human image
+      image(hU, px, py);     //display the image
+    }
+    if (pD == 1) {
+      PImage hD = loadImage("humanD.png");
+      image(hD, px, py);
+    }
+    if (pL == 1) {
+      PImage hL = loadImage("humanL.png");
+      image(hL, px, py);
+    }
+    if (pR == 1) {
+      PImage hR = loadImage("humanR.png");
+      image(hR, px, py);
+    }
+  }
+}
+
+public void keyReleased() {
+  if (l == 1 && r == 1 && u == 1 && d == 1) {
+    if (keyCode == RIGHT) {     //detects if right arrow is released
+      right = 0;
+    }
+    if (keyCode == DOWN) {
+      down = 0;
+    }
+    if (keyCode == LEFT) {
+      left = 0;
+    }
+    if (keyCode == UP) {
+      up = 0;
+    }
+  }
+}
